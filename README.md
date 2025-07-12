@@ -25,7 +25,7 @@ It showcases my background, skills, and experiences in **data analysis**, **digi
 
 ## 📍 How to View
 You can view the live version at:  
-➡️ **[yourusername.github.io/personal-web-meiyinmonica](https://yourusername.github.io/personal-web-meiyinmonica)**
+➡️ **[https://meiyin-monica.github.io/personal-web-meiyinmonica/)**
 
 ## 📬 Contact
 Feel free to reach out via [LinkedIn: Meiyin Monica Amilia Putri] or email at: **meiyinmonica@gmail.com**
