@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-... (bisa kosong untuk testing)" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>meiyinmonica</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      padding-top: 80px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh; /* pastikan halaman minimal setinggi layar */
+      padding-bottom: 0px; /* pastikan tidak dorong footer ke atas */
+    }
+
+    .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: #fc809f;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #333;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .nav-links li a:hover {
+      background: #fcd2da;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+    }
+
+    /* Existing styles tetap, lalu tambahkan ini */
+
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 40px;
+    background: white;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .profile-photo img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid;
+      margin: 2px auto;
+    }
+
+    .skills {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .skill {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      font-size: 1.2rem;
+      text-align: center;
+      width: 80px;
+    }
+
+    .name {
+      color: #fc809f;
+      font-weight: bold;
+    }
+
+    .job-title {
+      color: #fc809f;
+      margin: 10px 0;
+      font-size: 1.3rem;
+      padding-top: 20px;
+    }
+
+    .description {
+      max-width: 600px;
+      margin: 0 auto;
+      margin-top: 10px;
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      text-decoration: none;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: #fc809f;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #e0cbb9;
+    }
+
+    .btn-light {
+      background: white;
+      color: #333;
+    }
+
+    .btn-light:hover {
+      background: #f3f4f6;
+    }
+
+    .buttons a {
+      text-decoration: none;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+      font-size: 1.5rem;
+      color: #555;
+    }
+
+    .social-icons a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fc809f;
+    }
+
+     /* What I Do Section */
+    .section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .section p.sub {
+      color: #fc809f;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section h2 {
+      font-size: 30px;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: 0.3s ease;
+      text-align: left;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card i {
+      font-size: 22px;
+      color: #fc809f;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Footer area */
+.footer-wrapper {
+  margin-top: 5px;
+  width: 100vw;
+  background-color: white;
+  text-align: center;
+  display: block;
+}
+
+.footer {
+  padding: 15px 0;
+}
+
+.footer-logo {
+  width: 120px;     /* Atur sesuai selera */
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.nav-menu a:hover {
+  color: #fc809f;
+}
+
+.nav-menu a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.social-icons {
+  margin: 15px 5px;
+}
+
+.social-icons i {
+  font-size: 18px;
+  margin: 0 12px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+.social-icons i:hover {
+  color: #fc809f;
+}
+
+
+/* Bottom black bar */
+.bottom-bar {
+  background-color: #2e2e2e;
+  color: white;
+  padding: 10px 0;
+  font-size: 13px;
+  margin-top: -5px; /* Optional, kalau ada jarak putih tipis */
+}
+
+  </style>
+</head>
+<body>
+  <header>
+  <nav class="navbar">
+    <div class="logo">mynmncaa</div>
+
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="portofolio.html">Portofolio</a></li>
+      <li><a href="organization.html">Organization</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+  <main class="hero">
+    <div class="profile-photo">
+      <img src="asset/foto linkedin.jpg" alt="myn" />
+      <H1>Meiyin Monica Amilia Putri</H1>
+    </div>
+
+    <div class="skills">
+      <div class="skill">📊<br><small>Data</small></div>
+      <div class="skill">🧠<br><small>Analyst</small></div>
+      <div class="skill">💻<br><small>Adm</small></div>
+    </div>
+
+    <h2 class="job-title">About Me</h2>
+    <p class="description">
+       I'm an active Information Systems student at Sriwijaya University with a strong interest in data analysis, artificial intelligence, and digital administration. I’ve been involved in several academic and organizational projects, including web development, data visualization with Excel and Python, and document management. Passionate about learning and applying technology to solve real-world problems.
+    </p>
+
+    <div class="buttons" style="text-decoration: none;">
+    <a href="about.html">
+    <button class="btn btn-primary">
+      Learn More <i class="fas fa-arrow-right"></i>
+    </button>
+    </a>
+
+  <a href="CV _Meiyin Monica Amilia Putri(2).pdf" download>
+    <button class="btn btn-light">
+      Download CV <i class="fas fa-download"></i>
+    </button>
+  </a>
+</div>
+
+
+    <!-- What I Do Section -->
+  <section class="section">
+    <h2 style="color: #000;">What I Do</h2>
+    <div class="cards">
+      <div class="card">
+        <i class="fas fa-bars"></i>
+        <h3> Data Processing & Visualization</h3>
+        <p>Analyze and visualize data using Python, Excel, and other simple tools.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-book"></i>
+        <h3> Web-Based Academic Projects</h3>
+        <p>Create personal websites and college assignments with HTML, CSS, PHP, and MySQL.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-calendar-alt"></i>
+        <h3> Administrative & Documentation Management</h3>
+        <p>Manage organizational documents such as reports, archives, and correspondence.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-comments"></i>
+        <h3>Organizational & Event Coordination</h3>
+        <p>Act as a committee member and MC at campus organization events</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-wifi"></i>
+        <h3>Content Creation & Promotion</h3>
+        <p>Create promotional captions for the organization's social media.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-bolt"></i>
+        <h3>Human Capital & Member Engagement</h3>
+        <p>Manage member data and interests and support active member engagement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+<section id="contact" class="section" style="margin-bottom: 10px; padding-bottom: 0;">
+  <p class="sub">Contact With Me</p>
+  <h2>Contact</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 30px;">
+    
+    <!-- Contact Info -->
+    <div style="flex: 1 1 300px; background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);">
+      <h3>Meiyin Monica Amilia Putri</h3>
+      <p style="font-weight: 500; color: #888;">Information Systems</p>
+      <p style="margin-top: 15px; font-size: 14px; color: #555;">
+        I am available for freelance work. Connect with me via phone and call in to my account.
+      </p>
+      <p style="margin: 10px 0; font-size: 14px;">
+        Phone: 083148851409<br>
+        Email: meiyinmonica@gmail.com
+      </p>
+      <div class="social-icons">
+      <a href="https://www.instagram.com/mynmncaa?igsh=b3g1Yzdid2l4bjhr"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com/in/meiyin-monica-amilia-putri-047438288 "><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/meiyin-monica"><i class="fab fa-github"></i></a>
+    </div>
+    <div style="margin-top: 20px; text-align: center;">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7967.0424186425635!2d104.64802690108588!3d-3.219503356588432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3bbdf1ba5ade17%3A0xec8169998ecd82bc!2sFakultas%20Ilmu%20Komputer%20UNSRI%20Indralaya!5e0!3m2!1sid!2sid!4v1751265857674!5m2!1sid!2sid"
+    width="250" 
+    height="150" 
+    style="border:0; border-radius: 10px;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+    </div>
+
+    <!-- Contact Form -->
+    <div style="flex: 1 1 400px; background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);">
+      <form method="POST" action="contact.php">
+        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+          <input type="text" placeholder="Your Name" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px;" required>
+          <input type="text" placeholder="Phone Number" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px;" required>
+        </div>
+        <input type="email" placeholder="Email" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px;" required>
+        <input type="text" placeholder="Subject" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px;">
+        <textarea placeholder="Your Message" rows="5" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px;" required></textarea>
+        <button type="submit" style="width: 100%; padding: 12px; background-color: #fc809f; color: #fff; font-weight: 600; border: none; border-radius: 8px;">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+
+
+<!-- Footer Full Width -->
+<div class="footer-wrapper">
+  <div class="footer">
+    <img src="asset/logo.png" alt="Logo" class="footer-logo">
+    <div class="nav-menu">
+      <a href="#">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="portofolio.html">PORTOFOLIO</a>
+      <a href="organization.html">ORGANIZATION</a>
+      <a href="#">CONTACT US</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/mynmncaa?igsh=b3g1Yzdid2l4bjhr"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com/in/meiyin-monica-amilia-putri-047438288 "><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/meiyin-monica"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    All Rights Reserved
+  </div>
+</div>
+
+
+
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>
+
+</body>
+</html>

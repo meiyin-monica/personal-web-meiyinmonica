@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Timeline</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      padding-top: 50px;
+    }
+
+     .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: #fc809f;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #333;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .nav-links li a:hover {
+      background: #fcd2da;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+    }
+
+    /* Existing styles tetap, lalu tambahkan ini */
+
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 40px;
+    background: white;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      border-bottom: 2px solid #eee;
+      margin-bottom: 30px;
+    }
+
+    .tab {
+      padding: 12px 20px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .tab.active {
+      color: #fc809f;
+      border-color: #fc809f;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .timeline {
+      position: relative;
+      margin-left: 20px;
+      border-left: 3px solid #cce5ff;
+      padding-left: 20px;
+    }
+
+    .entry {
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .entry::before {
+      content: "";
+      position: absolute;
+      left: -32px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      background: #fc809f;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px #cce5ff;
+    }
+
+    .role {
+      font-size: 18px;
+      color: #fc809f;
+      font-weight: bold;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+      margin-top: 10px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .card h3::before {
+      content: "👥";
+      margin-right: 8px;
+    }
+
+    .card small {
+      display: flex;
+      align-items: center;
+      color: #666;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+
+    .card small::before {
+      content: "🕒";
+      margin-right: 6px;
+    }
+
+    .card p {
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    .card ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+
+    .card ul li {
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+    <header>
+  <nav class="navbar">
+    <div class="logo">mynmncaa</div>
+
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="portofolio.html">Portfolio</a></li>
+      <li><a href="organization.html">Organization</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <div class="container">
+    <h1 style="text-align: center;">My Resume</h1>
+    <div class="tabs">
+      <div class="tab active" onclick="showSection('education')">Education</div>
+      <div class="tab" onclick="showSection('organization')">Organizations</div>
+    </div>
+
+    <!-- Education Section -->
+    <div class="section active" id="education">
+      <div class="timeline">
+        <div class="entry">
+          <div class="role">Information Systems</div>
+          <div class="card">
+            <h3>Universitas Sriwijaya</h3>
+            <small>Aug 2023 - Present</small>
+            <ul>
+              <li>Learned data analysis, databases, and basic programming (Python, SQL).</li>
+              <li>Developed personal  web-based projects.</li>
+              <li>Participated actively in tech communities.</li>
+            </ul>
+          </div>
+        </div>
+
+         <div class="entry">
+          <div class="role">MIPA</div>
+          <div class="card">
+            <h3>SMAN 3 Empat Lawang</h3>
+            <small>Aug 2021 - Juli 2023</small>
+            <ul>
+              <li>Focused on science subjects (math, physics, computing).</li>
+              <li>Joined school events and began interest in tech and data.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    
+    <!-- Organizations Section -->
+    <div class="section" id="organization">
+      <div class="timeline">
+        <div class="entry">
+          <div class="role">Ranger Human Capital</div>
+          <div class="card">
+            <h3>Digistar Club Chapter Universitas Sriwijaya</h3>
+            <small>Mei 2025 - Present</small>
+            <p><strong>Key Responsibilities:</strong></p>
+            <ul>
+              <li>Updating member data and managing interest survey results to support program alignment.</li>
+              <li>Monitoring and encouraging active participation from members and rangers.</li>
+              <li>Supporting communication and coordination within the internal team.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="role">Member Talent Management</div>
+          <div class="card">
+            <h3>Google Developer Student On Campus UNSRI</h3>
+            <small>Jan 2025 – Present</small>
+             <p><strong>Key Responsibilities:</strong></p>
+            <ul>
+              <li>Shared info about tech competitions to boost member participation and skills.</li>
+              <li>Served as event committee member from planning to execution.</li>
+              <li>Recorded and summarized member competition achievements for documentation and recognition.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="role">Administrative Staff</div>
+          <div class="card">
+            <h3>BEM KM FASILKOM UNSRI 2024</h3>
+            <small>Jan 2024 – Dec 2024</small>
+            <ul>
+              <li>Acted as Executive Secretary for 4 major faculty events.</li>
+              <li>Compiled and archived 30+ official documents (correspondence, reports, etc.).</li>
+              <li>Coordinated administrative needs across divisions to ensure smooth event execution.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="role">HRD Staff</div>
+          <div class="card">
+            <h3>Fasilkom Science Community</h3>
+            <small>Oct 2023 - Oct 2024</small>
+          <ul>
+              <li>Served as MC in external class events to facilitate engaging interaction.</li>
+              <li>Managed member participation and development data.</li>
+              <li>Helped design and implement member training programs to improve collaboration and soft skills.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="role">Member Content Writing</div>
+          <div class="card">
+            <h3>Google Developer Student Clubs</h3>
+            <small>Oct 2023 - Oct 2024</small>
+            <ul>
+              <li>Write social media captions and planned tech event promotions.</li>
+              <li>Created infographic content about Google products (Firebase, Cloud, etc.).</li>
+              <li>Collaborated in team content production for external campaigns.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.querySelector(`.tab[onclick="showSection('${sectionId}')"]`).classList.add('active');
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+
+  
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>
+
+</body>
+</html>
